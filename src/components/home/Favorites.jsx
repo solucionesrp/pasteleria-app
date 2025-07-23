@@ -1,12 +1,15 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-import bgPanes from '../../assets/img/panMenu.jpg'; // Using a placeholder image
+import pieLimon from '../../assets/img/favoritos/pieLimon.JPG';
+import cheesecake from '../../assets/img/favoritos/cheesecake.JPG';
+import galletas from '../../assets/img/favoritos/galletas.JPG';
+import tortaChocolate from '../../assets/img/favoritos/tortaChoco.JPG';
 
 const favoriteProducts = [
-  { id: 'fav-1', title: 'Pan Integral', price: '$2.990', image: bgPanes },
-  { id: 'fav-2', title: 'Pan Especial', price: '$3.590', image: bgPanes },
-  { id: 'fav-3', title: 'Pan Artesanal', price: '$4.290', image: bgPanes },
-  { id: 'fav-4', title: 'Pan de Molde', price: '$3.990', image: bgPanes },
+  { id: 'fav-1', title: 'Pie de Limón', price: '$2.990', image: pieLimon },
+  { id: 'fav-2', title: 'Cheesecake', price: '$3.590', image: cheesecake },
+  { id: 'fav-3', title: 'Galletas', price: '$4.290', image: galletas },
+  { id: 'fav-4', title: 'Torta de Chocolate', price: '$3.990', image: tortaChocolate },
 ];
 
 const Favorites = ({ onViewProduct }) => {

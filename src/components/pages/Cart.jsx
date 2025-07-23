@@ -5,8 +5,16 @@ import { useCart } from '../../context/CartContext'; // Importar el hook del car
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart(); // Obtener todo lo necesario del contexto
   const subtotal = cartItems.reduce((sum, item) => {
-    // Convertir el precio de CLP (ej: "$2.990") a un número (2990)
-    const price = parseInt(item.price.replace('$', '').replace('.', ''), 10);
+    let priceStr = '';
+    if (item.price12 && !item.size) priceStr = item.price12;
+    else if (item.price && !item.price10 && !item.price30) priceStr = item.price;
+    else if (item.size === '10 Personas') priceStr = item.price10;
+    else if (item.size === '30 Personas') priceStr = item.price30;
+    else priceStr = item.price10 || item.price30 || '';
+    // Si el string contiene ':', toma solo la parte después de los dos puntos
+    if (priceStr.includes(':')) priceStr = priceStr.split(':')[1].trim();
+    // Elimina solo el símbolo $ y los puntos (separador de miles)
+    const price = priceStr ? parseInt(priceStr.replace(/\$/g, '').replace(/\./g, ''), 10) : 0;
     return sum + price * item.quantity;
   }, 0);
 
@@ -36,8 +44,27 @@ const Cart = () => {
                     <img src={item.image} alt={item.title} className="w-28 h-28 object-cover rounded-lg shadow-sm" />
                     <div className="flex-grow text-center sm:text-left">
                       <h3 className="font-bold text-lg text-gray-800">{item.title}</h3>
+                      {item.price12 && !item.size ? (
+                        <>
+                          <p className="text-sm text-gray-500">Porciones: 12</p>
+                          <p className="text-md font-semibold text-[#e99d64]">{(() => {
+                            let priceStr = item.price12;
+                            if (priceStr.includes(':')) priceStr = priceStr.split(':')[1].trim();
+                            return priceStr;
+                          })()}</p>
+                        </>
+                      ) : item.price && !item.price10 && !item.price30 ? (
+                        <>
+                          <p className="text-sm text-gray-500">Precio Unitario: {item.price}</p>
+                        </>
+                      ) : (
+                        <>
                       <p className="text-sm text-gray-500">Tamaño: {item.size}</p>
-                      <p className="text-md font-semibold text-[#e99d64]">{item.price}</p>
+                      <p className="text-md font-semibold text-[#e99d64]">
+                        {item.size === '10 Personas' ? item.price10 : item.size === '30 Personas' ? item.price30 : item.price10 || item.price30 || '$0'}
+                      </p>
+                        </>
+                      )}
                     </div>
                     <div className="flex items-center gap-4">
                       <button onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)} className="bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded-lg hover:bg-gray-300 transition-colors">-</button>
@@ -72,7 +99,7 @@ const Cart = () => {
                 <button className="w-full bg-[#44646c] hover:bg-[#3a565d] text-white font-bold py-3 rounded-lg transition-colors text-lg">
                   Proceder al Pago
                 </button>
-                <Link to="/productos" className="w-full text-center bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-lg">
+                <Link to="/" className="w-full text-center bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-lg">
                   Seguir Comprando
                 </Link>
               </div>

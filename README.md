@@ -5,7 +5,7 @@
 - **Node.js** (incluye npm)
   - Descárgalo desde: [https://nodejs.org/](https://nodejs.org/)
 - (Opcional) **Visual Studio Code** u otro editor de código
-  - [https://code.visualstudio.com/](https://code.visualstudio.com/)
+  - [https://code.visualstudio.com/] (https://code.visualstudio.com/)
 
 ## Instalación y ejecución
 

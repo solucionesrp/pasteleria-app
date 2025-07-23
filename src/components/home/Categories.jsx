@@ -1,15 +1,15 @@
 import React from 'react';
 import CategoryCard from './CategoryCard';
-import panBlanco from '../../assets/img/panMenu.jpg';
-import paiImage from '../../assets/img/pie.jpg';
-import tortaImage from '../../assets/img/torta.jpg';
-import brownieImage from '../../assets/img/brown.jpg';
+import tortasImage from '../../assets/img/tortas.JPG';
+import tartasImage from '../../assets/img/tartas.JPG';
+import alfajoresImage from '../../assets/img/alfajores.JPG';
+import pastelImage from '../../assets/img/pastel.JPG';
 
 const categoriesData = [
-  { title: 'Pan Blanco', image: panBlanco, path: '/pan-blanco' },
-  { title: 'Pais', image: paiImage, path: '/pais' },
-  { title: 'Tortas', image: tortaImage, path: '/tortas' },
-  { title: 'Brownies', image: brownieImage, path: '/brownies' },
+  { title: 'Tortas', image: tortasImage, path: '/tortas' },
+  { title: 'Tartas', image: tartasImage, path: '/tartas' },
+  { title: 'Alfajores', image: alfajoresImage, path: '/alfajores' },
+  { title: 'Pasteles', image: pastelImage, path: '/pasteles' },
 ];
 
 const Categories = () => {

@@ -40,15 +40,15 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Siguenos</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
+              <button className="text-gray-400 hover:text-white transition-colors">
                 <FaInstagram className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              </button>
+              <button className="text-gray-400 hover:text-white transition-colors">
                 <FaFacebook className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              </button>
+              <button className="text-gray-400 hover:text-white transition-colors">
                 <FaTwitter className="h-6 w-6" />
-              </a>
+              </button>
             </div>
           </div>
         </div>

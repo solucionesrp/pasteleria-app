@@ -6,12 +6,16 @@ import { CartProvider } from './context/CartContext';
 import Home from './components/pages/Home';
 import Productos from './components/pages/Productos';
 import Nosotros from './components/pages/Nosotros';
-import PanBlanco from './components/pages/PanBlanco';
+import Tortas from './components/pages/Tortas';
+import Tartas from './components/pages/Tartas';
+import Alfajores from './components/pages/Alfajores';
+import Pasteles from './components/pages/Pasteles';
 import Cart from './components/pages/Cart';
 import Navbar from './components/common/Navbar';
 import './App.css';
 import WhatsAppButton from './components/common/WhatsAppButton';
 import Footer from './components/common/Footer';
+import ScrollToTop from './components/common/ScrollToTop';
 
 function App() {
   useEffect(() => {
@@ -24,13 +28,17 @@ function App() {
   return (
     <CartProvider>
       <Router>
+        <ScrollToTop />
         <div className="App">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/pan-blanco" element={<PanBlanco />} />
+            <Route path="/tortas" element={<Tortas />} />
+            <Route path="/tartas" element={<Tartas />} />
+            <Route path="/alfajores" element={<Alfajores />} />
+            <Route path="/pasteles" element={<Pasteles />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
           <WhatsAppButton />

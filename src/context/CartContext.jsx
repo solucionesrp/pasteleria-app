@@ -23,26 +23,29 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product, quantity, size) => {
     setCartItems(prevItems => {
-      // Buscamos si el producto con el mismo ID y TAMAÑO ya existe
-      const existingItem = prevItems.find(
-        item => item.id === product.id && item.size === size
-      );
+      // Si es tarta (price12 y sin size), no le agregues size
+      const isTarta = product.price12 && !product.price10 && !product.price30;
+      // Si es alfajor (price fijo), no le agregues size
+      const isAlfajor = product.price && !product.price10 && !product.price30;
+      const cartItemId = `${product.id}-${product.title}-${isTarta ? '12porciones' : isAlfajor ? 'preciounitario' : size}`;
+      
+      // Buscamos si el producto con el mismo cartItemId ya existe
+      const existingItem = prevItems.find(item => item.cartItemId === cartItemId);
 
       if (existingItem) {
         // Si ya existe, actualizamos solo la cantidad
         return prevItems.map(item =>
-          item.id === product.id && item.size === size
+          item.cartItemId === cartItemId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        // Si es un producto nuevo (o de un tamaño diferente), lo añadimos al carrito
+        // Si es un producto nuevo, lo añadimos al carrito
         const newItem = { 
           ...product, 
           quantity, 
-          size,
-          // Creamos un ID único para el item en el carrito combinando producto y tamaño
-          cartItemId: `${product.id}-${size}` 
+          ...(isTarta || isAlfajor ? {} : { size }),
+          cartItemId
         };
         return [...prevItems, newItem];
       }
